@@ -5,22 +5,27 @@ EAPI=9
 
 DESCRIPTION="A simple initramfs generator"
 HOMEPAGE="https://github.com/teqwve/kissrd"
-SRC_URI="https://github.com/teqwve/kissrd/archive/refs/tags/v${PV}.tar.gz"
+SRC_URI="https://github.com/teqwve/kissrd/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz"
 
 LICENSE="MIT"
 SLOT="0"
 KEYWORDS="amd64"
-IUSE="openrc systemd"
+IUSE="cryptsetup lvm openrc systemd"
 REQUIRED_USE="
 	?? ( openrc systemd )
 "
 
 RDEPEND="
+	app-alternatives/cpio
 	app-shells/bash
 	sys-apps/busybox
 	sys-apps/kmod
-	sys-libs/glibc
+	sys-apps/util-linux
+	cryptsetup? ( sys-fs/cryptsetup )
+	lvm? ( sys-fs/lvm2 )
 "
+
+DOCS=( README.md )
 
 src_install() {
 	if use openrc; then
@@ -30,4 +35,6 @@ src_install() {
 	else
 		emake DESTDIR="${D}" install
 	fi
+
+	einstalldocs
 }

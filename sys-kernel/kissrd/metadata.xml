@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>teqwve@mailbox.org</email>
+	</maintainer>
+	<longdescription>
+		kissrd is an extremely simple initramfs generator, driven by a
+		single shell script and a small config file listing extra
+		binaries and kernel modules to embed.
+	</longdescription>
+	<use>
+		<flag name="cryptsetup">Pull in sys-fs/cryptsetup for LUKS root support (rd.actions=luks:...)</flag>
+		<flag name="lvm">Pull in sys-fs/lvm2 for LVM root support (rd.actions=lvm:...)</flag>
+		<flag name="openrc">Install the OpenRC kernel-install hook</flag>
+		<flag name="systemd">Install the systemd kernel-install hook</flag>
+	</use>
+	<upstream>
+		<remote-id type="github">teqwve/kissrd</remote-id>
+	</upstream>
+</pkgmetadata>
